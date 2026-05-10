@@ -1,0 +1,30 @@
+#include <iostream>
+#include <limits>
+#include <string>
+
+// Returns a new string with the character at 'index' replaced by 'new_char'.
+// If index is out of bounds, returns the original string unchanged.
+std::string safe_modify_string(std::string& s, int index, std::string& new_char) {
+    if (index < 0 || index >= (int)s.size()) {
+        return s;
+    }
+    std::string result = s;
+    result[index] = new_char[0];
+    return result;
+}
+
+void ignore_line() {
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+int main() {
+    std::string s;
+    std::getline(std::cin, s);
+    int index;
+    std::cin >> index;
+    ignore_line();
+    std::string new_char;
+    std::getline(std::cin, new_char);
+    std::string res = safe_modify_string(s, index, new_char);
+    std::cout << res << '\n';
+}
