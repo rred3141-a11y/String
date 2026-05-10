@@ -1,0 +1,23 @@
+#include <iostream>
+#include <map>
+#include <string>
+#include <unordered_map>
+
+// Builds a frequency map: each key is a character (as string), value is its count.
+std::unordered_map<std::string, int> count_characters(std::string& s) {
+    std::unordered_map<std::string, int> freq;
+    for (char c : s) {
+        freq[std::string(1, c)]++;
+    }
+    return freq;
+}
+
+int main() {
+    std::string s;
+    std::getline(std::cin, s);
+    std::unordered_map<std::string, int> res = count_characters(s);
+    std::map<std::string, int> ordered_res(res.begin(), res.end());
+    for (auto const& [key, val] : ordered_res) {
+        std::cout << key << ' ' << val << '\n';
+    }
+}
